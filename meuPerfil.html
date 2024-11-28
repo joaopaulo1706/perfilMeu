@@ -1,22 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    <!-- Definindo o conjunto de caracteres e a responsividade da página -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil interativo</title>
+    <!-- Link para o Bootstrap para utilizar estilos prontos -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light">
+    <!-- Container do perfil -->
     <div class="container mt-5">
         <div class="card" id="profileCard">
             <div class="card-body text-center">
+                <!-- Imagem de perfil (um gif) -->
                 <img src="https://media.tenor.com/EGIf4EM7vJ4AAAAM/white-dog-dancing-dancing-dog.gif" alt="Imagem de Perfil" id="profileImage" 
                      class="rounded-circle mb-3" style="width: 150px;">
+                <!-- Exibição do nome e da idade do usuário -->
                 <h3 id="profileName">Nome: perfil meu</h3>
                 <p id="profileAge">Idade: 16</p>
 
+                <!-- Lista de hobbies do usuário -->
                 <h5>Hobbies:</h5>
                 <ul id="hobbiesList" class="list-group mb-3">
+                    <!-- Cada hobby é um item da lista com um botão para excluir -->
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         treino de peito 😍
                         <button class="btn btn-sm btn-danger" onclick="removerHobby(this)">Excluir</button>
@@ -31,6 +38,7 @@
                     </li>
                 </ul>
 
+                <!-- Botões para interagir com o perfil -->
                 <button class="btn btn-primary me-2" onclick="alterarNome()">Alterar Nome</button>
                 <button class="btn btn-success me-2" onclick="adicionarHobby()">Adicionar Hobby</button>
                 <button class="btn btn-warning me-2" onclick="mudarCorDeFundo()">Mudar Cor de Fundo</button>
@@ -41,58 +49,68 @@
     </div>
 
     <script>
+        // Função para alterar a imagem do perfil
         function alterarImagem() {
-            const novaImagem = prompt("Cole o URL da nova imagem:");
+            const novaImagem = prompt("Cole o URL da nova imagem:"); // Pede o URL da nova imagem
             if (novaImagem) {
-                document.getElementById("profileImage").src = novaImagem;
+                document.getElementById("profileImage").src = novaImagem; // Altera o atributo 'src' da imagem
             }
         }
 
+        // Função para mudar a idade do perfil
         function mudarIdade() {
-            const novaIdade = prompt("Digite a nova idade:");
+            const novaIdade = prompt("Digite a nova idade:"); // Pede para o usuário inserir a nova idade
             if (novaIdade) {
-                document.getElementById("profileAge").textContent = "Idade: " + novaIdade;
+                document.getElementById("profileAge").textContent = "Idade: " + novaIdade; // Atualiza a idade na tela
             }
         }
 
+        // Função para alterar o nome do perfil
         function alterarNome() {
-            const novoNome = prompt("Digite o novo nome:");
+            const novoNome = prompt("Digite o novo nome:"); // Pede para o usuário inserir um novo nome
             if (novoNome) {
-                document.getElementById("profileName").textContent = "Nome: " + novoNome;
+                document.getElementById("profileName").textContent = "Nome: " + novoNome; // Atualiza o nome na tela
             }
         }
 
+        // Função para adicionar um novo hobby à lista
         function adicionarHobby() {
-            const novoHobby = prompt("Digite um novo hobby:");
+            const novoHobby = prompt("Digite um novo hobby:"); // Pede o nome do novo hobby
             if (novoHobby) {
-                const li = document.createElement("li");
-                li.className = "list-group-item d-flex justify-content-between align-items-center";
-                li.textContent = novoHobby;
+                const li = document.createElement("li"); // Cria um novo item de lista
+                li.className = "list-group-item d-flex justify-content-between align-items-center"; // Adiciona classes de estilo
+                li.textContent = novoHobby; // Adiciona o texto do novo hobby ao item da lista
 
+                // Cria o botão para excluir o hobby
                 const button = document.createElement("button");
                 button.textContent = "Excluir";
-                button.className = "btn btn-sm btn-danger";
+                button.className = "btn btn-sm btn-danger"; // Estilo do botão
                 button.onclick = function () {
-                    removerHobby(button);
+                    removerHobby(button); // Ação de remover o hobby ao clicar no botão
                 };
 
+                // Adiciona o botão de excluir ao item de lista
                 li.appendChild(button);
+                // Adiciona o novo item de lista à lista de hobbies
                 document.getElementById("hobbiesList").appendChild(li);
             }
         }
 
+        // Função para remover um hobby da lista
         function removerHobby(button) {
-            const li = button.parentElement;
-            li.remove();
+            const li = button.parentElement; // Encontra o item da lista que contém o botão
+            li.remove(); // Remove o item da lista
         }
 
+        // Função para mudar a cor de fundo do card
         function mudarCorDeFundo() {
-            const cores = ["#f8d7da", "#d1ecf1", "#d4edda", "#fff3cd", "#cce5ff"];
-            const corAleatoria = cores[Math.floor(Math.random() * cores.length)];
-            document.getElementById("profileCard").style.backgroundColor = corAleatoria;
+            const cores = ["#f8d7da", "#d1ecf1", "#d4edda", "#fff3cd", "#cce5ff"]; // Definindo um array com várias cores
+            const corAleatoria = cores[Math.floor(Math.random() * cores.length)]; // Escolhendo uma cor aleatória
+            document.getElementById("profileCard").style.backgroundColor = corAleatoria; // Alterando a cor de fundo do card
         }
     </script>
 
+    <!-- Link para o JavaScript do Bootstrap para funcionalidades extras -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
